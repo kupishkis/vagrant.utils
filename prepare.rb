@@ -23,9 +23,10 @@ end
 def validate_map(map)
   # Automagically fill 'localhost' in map.
   unless map['localhost']
-    map['localhost'] = public_ip.ip_address unless public_ip.nil?
+    map['localhost'] = public_ip.ip_address.force_encoding("UTF-8") unless public_ip.nil?
     raise "Could not determine local ip. Please add in to config.yml." unless map['localhost']
   end
   map
 end
+
 
